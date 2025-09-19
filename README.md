@@ -234,4 +234,4 @@ This project is licensed under the MIT License.
 ---
 
 ## Live Demo
-You can try the project here: [Cybersecurity Roadmap Tracker](http://cybersecurity-roadmap-tracker.netlify.app/)
+You can try the project here: [Cybersecurity Roadmap Tracker](https://cybersecurity-roadmap-tracker.netlify.app/)
