@@ -1,8 +1,10 @@
 // components/MobileNav.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const MobileNav = ({ user, userData, selectedRegion, onRegionChange, onLogout, isLoggingOut }) => {
+const MobileNav = ({ user, userData, selectedRegion, onRegionChange, onLogout, isLoggingOut, isAdmin, onOpenAdmin }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -73,6 +75,17 @@ const MobileNav = ({ user, userData, selectedRegion, onRegionChange, onLogout, i
                 </div>
               </div>
               
+              {isAdmin && (
+                <div className="mobile-menu-section">
+                  <button 
+                    className="mobile-logout-btn"
+                    onClick={() => { onOpenAdmin ? onOpenAdmin() : navigate('/admin'); setIsOpen(false); }}
+                  >
+                    Open Admin Dashboard
+                  </button>
+                </div>
+              )}
+
               <div className="mobile-menu-section">
                 <button 
                   className="mobile-logout-btn"

@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Dashboard from './components/Dashboard';
+import AdminDashboard from './components/AdminDashboard';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import PhaseList from './components/PhaseList';
 import Auth from './components/Auth';
 import Celebration from './components/Celebration';
@@ -18,6 +20,7 @@ function AppContent() {
   const [showCelebration, setShowCelebration] = useState(false);
   const [celebrationMessage, setCelebrationMessage] = useState('');
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const navigate = useNavigate();
   const [error, setError] = useState('');
   const dataLoadedRef = useRef(false);
 
@@ -243,6 +246,8 @@ function AppContent() {
         onRegionChange={handleRegionChange}
         onLogout={handleLogout}
         isLoggingOut={isLoggingOut}
+        isAdmin={userData?.role === 'admin'}
+        onOpenAdmin={() => navigate('/admin')}
       />
 
       <header className="app-header">
@@ -274,6 +279,15 @@ function AppContent() {
               </button>
             </div>
           </div>
+          {userData?.role === 'admin' && (
+            <button 
+              className="logout-btn" 
+              onClick={() => navigate('/admin')}
+              style={{ marginRight: '8px' }}
+            >
+              Admin
+            </button>
+          )}
           <button 
             className="logout-btn" 
             onClick={handleLogout}
@@ -285,22 +299,26 @@ function AppContent() {
       </header>
       
       <main className="app-main">
-        <Dashboard 
-          progressData={progressData} 
-          phaseProgressData={phaseProgressData} 
-        />
-        
-        <div className="roadmap-container">
-          <h2>Cybersecurity Roadmap</h2>
-          <PhaseList 
-            roadmapData={roadmapData} 
-            progress={progress}
-            resourcePayments={resourcePayments}
-            onTaskToggle={handleTaskToggle}
-            onResourcePayment={handleResourcePayment}
-            selectedRegion={selectedRegion}
-          />
-        </div>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Dashboard progressData={progressData} phaseProgressData={phaseProgressData} />
+              <div className="roadmap-container">
+                <h2>Cybersecurity Roadmap</h2>
+                <PhaseList 
+                  roadmapData={roadmapData} 
+                  progress={progress}
+                  resourcePayments={resourcePayments}
+                  onTaskToggle={handleTaskToggle}
+                  onResourcePayment={handleResourcePayment}
+                  selectedRegion={selectedRegion}
+                />
+              </div>
+            </>
+          } />
+          <Route path="/admin" element={userData?.role === 'admin' ? <AdminDashboard /> : <Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
     </div>
   );

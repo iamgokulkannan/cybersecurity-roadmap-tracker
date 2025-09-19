@@ -841,6 +841,48 @@ body {
   text-align: center;
 }
 
+/* Admin Dashboard (dark) */
+.admin-dashboard {
+  background: #0f172a;
+  color: #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.admin-dashboard h2,
+.admin-dashboard h3,
+.admin-dashboard h4 {
+  color: #000000;
+}
+
+.admin-dashboard table { width: 100%; border-collapse: collapse; }
+.admin-dashboard thead th {
+  text-align: left;
+  padding: 10px;
+  color: #000000;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+}
+.admin-dashboard tbody td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  color: #000000;
+}
+
+.admin-primary-btn { background: #2563eb; color: #fff; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
+.admin-primary-btn:hover { background: #1d4ed8; }
+.admin-back-btn { background: transparent; color: #ffffff; border: 1px solid rgba(255,255,255,0.9); padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+.admin-back-btn:hover { background: rgba(255,255,255,0.08); }
+
+.admin-user-roadmap { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 12px; }
+.admin-progress-track { width: 120px; background: rgba(255,255,255,0.1); height: 8px; border-radius: 6px; }
+.admin-progress-fill { background: #22c55e; height: 100%; border-radius: 6px; }
+.admin-user-roadmap .task-item { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 10px 0; }
+.admin-user-roadmap .task-item a { color: #93c5fd; }
+.admin-user-roadmap .task-item a:hover { color: #bfdbfe; }
+
+/* Chart label contrast for dark bg */
+.progress-percentage-text { fill: #ffffff; }
+
 .bar-chart-container {
   background: #f7fafc;
   padding: 20px;

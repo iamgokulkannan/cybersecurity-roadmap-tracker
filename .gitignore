@@ -25,3 +25,6 @@ yarn-error.log*
 #files
 firebase.json
 config.js
+AdminDashboard.js
+AdminUserDashboardView.js
+AdminUserRoadmapView.js

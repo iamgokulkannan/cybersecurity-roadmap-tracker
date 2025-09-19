@@ -9,7 +9,7 @@ import {
   GoogleAuthProvider
 } from 'firebase/auth';
 import { auth } from './config';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, getDocs, collection } from 'firebase/firestore';
 import { db } from './config';
 
 // Initialize Google Auth Provider
@@ -160,6 +160,17 @@ export const getUserData = async (uid) => {
     } else {
       return { success: false, error: 'User data not found' };
     }
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+};
+
+// Get all users data (admin use)
+export const getAllUsersData = async () => {
+  try {
+    const snapshot = await getDocs(collection(db, 'users'));
+    const users = snapshot.docs.map(d => d.data());
+    return { success: true, data: users };
   } catch (error) {
     return { success: false, error: error.message };
   }
