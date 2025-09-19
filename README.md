@@ -113,9 +113,7 @@ Now open your browser and visit [http://localhost:3000](http://localhost:3000).
 - HTML5 (semantic markup)  
 
 ### Data Management
-- Local Storage (persistence)  
-- React State Management  
-- JSON (roadmap data)  
+- Firebase
 
 ### Development Tools
 - Create React App  
